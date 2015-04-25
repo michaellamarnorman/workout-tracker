@@ -1,0 +1,60 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.pad{
+  margin: 0 2% 0 2%;
+}
+.gray{
+  background-color: #d3d3d3;
+}
+
+.lab{
+  text-decoration: underline;
+  font-weight: bolder;
+  vertical-align: middle;
+}
+
+.rep-button{
+  text-decoration: underline;
+  font-weight: bolder;
+  vertical-align: middle;
+  margin: 0 0 0 30%;
+  border-radius: 0;
+}
+
+.select{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.button-round{
+  border-radius: 100%;
+  
+}
+
+.workout{
+  width: 100%;
+}
+
+.row-height{
+  height: 100%;
+}
+.lab1{
+  width: 50%;
+}
+.hidding{
+  display: none;
+
+}

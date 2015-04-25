@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Test</title>
+
+  <!-- CSS  -->
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+</head>
+<body>
+ 
+  <nav class="teal">
+   <ul id="slide-out" class="side-nav">
+    <li><a href="#!">Profile</a></li>
+    <li><a href="#!">Previous Workouts</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+        
+</nav>
+    
+
+    <!-- Navbar goes here -->
+
+    <!-- Page Layout here -->
+    <div class="row">
+
+      <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
+        <!-- Grey navigation panel
+
+              This content will be:
+          3-columns-wide on large screens,
+          4-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+          <div class="card-panel">
+            <div class="panel-content">Maybe a menu here?</div>
+            
+          </div>
+          
+      </div>
+
+      <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
+
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+
+    
+          
+  <div class="section no-pad-bot" id="index-banner">
+ <div class="container">
+ <div class="row">
+ <div class="">
+    <ul class="collapsible workout col" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header lab">Squat<span><i class="mdi-action-view-headline"></i>
+</span></div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat1" onclick="reps('squat1')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat2" onclick="reps('squat2')" ></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat3" onclick="reps('squat3')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat4" onclick="reps('squat4')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat5" onclick="reps('squat5')"></span>
+        </p>
+      </div>
+    </li>
+    <li>
+      <li>
+      <div class="collapsible-header lab active" id="bench-parent">Bench<span><i class="mdi-action-view-headline"></i>
+</span></div>
+      
+      <div class="collapsible-body select">
+        <p id="bench-complete" class="hidding lab">Congrats! 130 LB next time!</p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench1" onclick="reps('bench1');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench2" onclick="reps('bench2');"></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench3" onclick="reps('bench3');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench4" onclick="reps('bench4');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench5" onclick="reps('bench5');"></span>
+        </p>
+      </div>
+    </li>
+    </li>
+    <li>
+      <li>
+      <div class="collapsible-header lab active">Row<span><i class="mdi-action-view-headline"></i>
+</span></div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="row1" onclick="reps('row1');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="row2" onclick="reps('row2');"></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="row3" onclick="reps('row3');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="row4" onclick="reps('row4');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">125LB X 5
+          <span class="btn btn-floating rep-button gray" id="row4" onclick="reps('row5');"></span>
+        </p>
+      </div>
+    </li>
+    </li>
+  </ul>
+  </div>
+  <button class="btn-large" type="button" onclick="tes()">Test</button>
+</div>
+   </div>
+
+    </div>
+
+  <!-- <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer> -->
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/main.js"></script>
+
+  </body>
+</html>
