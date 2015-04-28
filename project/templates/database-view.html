@@ -1,0 +1,37 @@
+{% extends '_layout.html' %}
+
+{% block content %}
+<div class="section no-pad-bot" style="padding: 0 3% 0 3%" id="index-banner">
+  <h4>Direct output from the database minus a few columns.</h4>
+  <table class='hoverable'>
+    <thead>
+      <tr>
+        <th>Workout</th>
+        <th>Date</th>
+        <th>Squats/Weight</th>
+        <th>Bench/Weight</th>
+        <th>Row/Weight</th>
+        <th>Press/Weight</th>
+        <th>Deadlift/Weight</th>
+        <th>Completed (bool)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for workout in workouts %}
+        <tr>
+          <td>Workout {{ workout.workout_a_b }}</td>
+          <td>Date {{ workout.start_time.month }}/{{ workout.start_time.day }}/{{ workout.start_time.year }}</td>
+          <td>{{ workout.squat_reps }} x {{workout.squat_weight }}LB</td>
+          <td>{% if workout.bench_reps %}{{ workout.bench_reps }} x {{workout.bench_weight }}LB{% endif %}</td>
+          <td>{% if workout.row_reps %}{{ workout.row_reps }} x {{workout.row_weight }}LB{% endif %}</td>
+          <td>{% if workout.press_reps %}{{ workout.press_reps }} x {{workout.press_weight }}LB{% endif %}</td>
+          <td>{% if workout.deadlift_reps %}{{ workout.deadlift_reps }} x {{workout.deadlift_weight }}LB{% endif %}</td>
+          <td>{{ workout.workout_complete }}</td>
+          
+        </tr>
+      {% endfor %}
+    </tbody>  
+  </table>
+</div>
+    
+{% endblock %}

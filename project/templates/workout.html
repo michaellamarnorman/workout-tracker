@@ -1,0 +1,285 @@
+{% extends '_layout.html' %}
+
+  {% block content %}
+
+    <!-- Navbar goes here -->
+
+    <!-- Page Layout here -->
+    <div class="row">
+<!-- 
+      <div class="col s12 m4 l3"> Note that "m4 l3" was added 
+         Grey navigation panel
+
+              This content will be:
+          3-columns-wide on large screens,
+          4-columns-wide on medium screens,
+          12-columns-wide on small screens  
+
+          <div class="card-panel">
+            <div class="panel-content">Maybe a menu here?</div>
+            
+          </div>
+          
+      </div> -->
+
+      <div class="col s12 m8 l9 right"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
+
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+
+    
+          
+  <div class="section no-pad-bot" id="index-banner">
+  <div id="workout-type" style="display:none">{{ id }}</div>
+  <div id="workout-workout" style="display:none">{{ workout }}</div>
+<!--  <div class="container">-->
+ {% if workout == 'A' %}
+ <div class="hide" id="squat-weight">{{ workout_stats.squat_weight }}</div>
+ <div class="hide" id="bench-weight">{{ workout_stats.bench_weight }}</div>
+ <div class="hide" id="row-weight">{{ workout_stats.row_weight }}</div>
+ <h4>Workout {{ workout }}</h4>
+ <div class="row">
+
+ <div class="">
+    <ul class="collapsible workout col" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header lab">Squat<span><i class="mdi-action-view-headline"></i>
+    </span></div>
+      <div class="collapsible-body select">
+        <p id="squat-complete" class="hidding lab"></p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat1" onclick="reps('squat1')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat2" onclick="reps('squat2')" ></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat3" onclick="reps('squat3')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat4" onclick="reps('squat4')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat5" onclick="reps('squat5')"></span>
+        </p>
+      </div>
+    </li>
+    <li>
+      <li>
+      <div class="collapsible-header lab" id="bench-parent">Bench<span><i class="mdi-action-view-headline"></i>
+</span></div>
+      
+      <div class="collapsible-body select">
+        <p id="bench-complete" class="hidding lab"></p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench1" onclick="reps('bench1');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench2" onclick="reps('bench2');"></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench3" onclick="reps('bench3');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench4" onclick="reps('bench4');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="bench5" onclick="reps('bench5');"></span>
+        </p>
+      </div>
+    </li>
+    </li>
+    <li>
+      <li>
+      <div class="collapsible-header lab">Row<span><i class="mdi-action-view-headline"></i>
+</span></div>
+      <div class="collapsible-body select">
+        <p id="row-complete" class="hidding lab"></p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="row1" onclick="reps('row1');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="row2" onclick="reps('row2');"></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="row3" onclick="reps('row3');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="row4" onclick="reps('row4');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="row5" onclick="reps('row5');"></span>
+        </p>
+      </div>
+    </li>
+    </li>
+  </ul>
+  </div>
+  {% else %}
+  <div class="hide" id="squat-weight">{{ workout_stats.squat_weight }}</div>
+  <div class="hide" id="press-weight">{{ workout_stats.press_weight }}</div>
+  <div class="hide" id="deadlift-weight">{{ workout_stats.deadlift_weight }}</div>
+  <h4>Workout {{ workout }}</h4>
+
+  <div class="row">
+ <div class="">
+    <ul class="collapsible workout col" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header lab">Squat<span><i class="mdi-action-view-headline"></i>
+    </span></div>
+      <div class="collapsible-body select">
+        <p id="squat-complete" class="hidding lab"></p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat1" onclick="reps('squat1')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat2" onclick="reps('squat2')" ></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat3" onclick="reps('squat3')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat4" onclick="reps('squat4')"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="squat5" onclick="reps('squat5')"></span>
+        </p>
+      </div>
+    </li>
+    <li>
+      <li>
+      <div class="collapsible-header lab" id="bench-parent">Press<span><i class="mdi-action-view-headline"></i>
+</span></div>
+      
+      <div class="collapsible-body select">
+        <p id="press-complete" class="hidding lab"></p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="press1" onclick="reps('press1');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="press2" onclick="reps('press2');"></span>
+        </p></div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="press3" onclick="reps('press3');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="press4" onclick="reps('press4');"></span>
+        </p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="press5" onclick="reps('press5');"></span>
+        </p>
+      </div>
+    </li>
+    </li>
+    <li>
+      <li>
+      <div class="collapsible-header lab">DeadLift<span><i class="mdi-action-view-headline"></i>
+</span></div>
+      <div class="collapsible-body select">
+        <p id="deadlift-complete" class="hidding lab"></p>
+      </div>
+      <div class="collapsible-body select">
+        <p class="lab">{{ workout_stats.deadlift_weight }}LB X 5
+          <span class="btn btn-floating rep-button gray" id="deadlift1" onclick="reps('deadlift1');"></span>
+        </p>
+      </div>
+    </li>
+    </li>
+  </ul>
+  </div>
+
+  {% endif %}
+  <!-- <form id="sub-form" method="POST"> -->
+    <button id="save-btn" type="button" class="btn-large btn-full-width" onclick="workout_completed();">Save</button>
+  <!-- </form> -->
+</div>
+<!--    </div>
+ -->
+    </div>
+
+  <!-- <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer> -->
+  {% endblock %}
+
+

@@ -1,49 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Test</title>
+{% extends '_layout.html' %}
 
-  <!-- CSS  -->
-  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-
-</head>
-<body>
- 
-  <nav class="teal">
-   <ul id="slide-out" class="side-nav">
-    <li><a href="#!">Profile</a></li>
-    <li><a href="#!">Previous Workouts</a></li>
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
-        
-</nav>
-    
-
-    <!-- Navbar goes here -->
-
+  {% block content %}
     <!-- Page Layout here -->
-    <div class="row">
 
-      <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
-        <!-- Grey navigation panel
+    <div class="row container">
+
+     <!--  <div class="col s12 m4 l3">  Note that "m4 l3" was added 
+         Grey navigation panel
 
               This content will be:
           3-columns-wide on large screens,
           4-columns-wide on medium screens,
-          12-columns-wide on small screens  -->
+          12-columns-wide on small screens  
 
           <div class="card-panel">
             <div class="panel-content">Maybe a menu here?</div>
             
           </div>
           
-      </div>
+      </div> -->
 
-      <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+      <div class="col s12 m8 l12 right"> <!-- Note that "m8 l9" was added -->
         <!-- Teal page content
 
               This content will be:
@@ -51,163 +28,95 @@
           8-columns-wide on medium screens,
           12-columns-wide on small screens  -->
 
-    
+  <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="mdi-action-announcement
+"></i>Important information!! Read</div>
+      <div class="collapsible-body"><p>Currently there is no user authentication, nor are workouts mapped to a user id.
+      The next step is adding user authentication and adding the relatinships to users.
+      Authentication is easy, setting up the relationships on the other hand will take
+      some experimentation.  Also, it is only 5x5 at the moment.  Using 5x5 made it 
+      easy for me to test, additional workouts will be added in the future. Final thought,
+      I just realized there is no timer between sets.  I will work on adding that with
+      toasts that are a part of the Materialize CSS project.  I don't think there is
+      any way to make the phone vibrate at certain intervals. So, I will just add a
+      sound, possibly a ding sound.</p></div>
+    </li> 
+  </ul>
+          
           
   <div class="section no-pad-bot" id="index-banner">
-<!--  <div class="container">-->
- <div class="row">
- <div class="">
-    <ul class="collapsible workout col" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header lab">Squat<span><i class="mdi-action-view-headline"></i>
-</span></div>
-      <div class="collapsible-body select">
-        <p id="squat-complete" class="hidding lab"></p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="squat1" onclick="reps('squat1')"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="squat2" onclick="reps('squat2')" ></span>
-        </p></div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="squat3" onclick="reps('squat3')"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="squat4" onclick="reps('squat4')"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="squat5" onclick="reps('squat5')"></span>
-        </p>
-      </div>
-    </li>
-    <li>
-      <li>
-      <div class="collapsible-header lab active" id="bench-parent">Bench<span><i class="mdi-action-view-headline"></i>
-</span></div>
-      
-      <div class="collapsible-body select">
-        <p id="bench-complete" class="hidding lab"></p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="bench1" onclick="reps('bench1');"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="bench2" onclick="reps('bench2');"></span>
-        </p></div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="bench3" onclick="reps('bench3');"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="bench4" onclick="reps('bench4');"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="bench5" onclick="reps('bench5');"></span>
-        </p>
-      </div>
-    </li>
-    </li>
-    <li>
-      <li>
-      <div class="collapsible-header lab active">Row<span><i class="mdi-action-view-headline"></i>
-</span></div>
-      <div class="collapsible-body select">
-        <p id="row-complete" class="hidding lab"></p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="row1" onclick="reps('row1');"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="row2" onclick="reps('row2');"></span>
-        </p></div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="row3" onclick="reps('row3');"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="row4" onclick="reps('row4');"></span>
-        </p>
-      </div>
-      <div class="collapsible-body select">
-        <p class="lab">125LB X 5
-          <span class="btn btn-floating rep-button gray" id="row5" onclick="reps('row5');"></span>
-        </p>
-      </div>
-    </li>
-    </li>
-  </ul>
+  <div class="card-panel">
+    <div class="panel-content">
+      <label><strong>Previous Workout: {{ prev_stats.workout_a_or_b }} - 
+      {{ prev_stats.workout_start_day.month }}/
+      {{ prev_stats.workout_start_day.day }}/
+      {{ prev_stats.workout_start_day.year }}</strong></label> 
+      {% if prev_stats.workout_a_or_b == "A" %}
+      <ul>
+        <li>
+          Squat: {{ prev_stats.squat }} at {{ prev_stats.squat_weight }}LB
+        </li>
+        <li>
+          Bench: {{ prev_stats.bench }} at {{ prev_stats.bench_weight }}LB
+        </li>
+        <li>
+          Row: {{ prev_stats.row }} at {{prev_stats.row_weight }}LB
+        </li>
+      </ul>
+      {% else %}
+      <ul>
+        <li>
+          Squat: {{ prev_stats.squat }} at {{ prev_stats.squat_weight }}LB
+        </li>
+        <li>
+          Press: {{ prev_stats.press }} at {{ prev_stats.press_weight }}LB
+        </li>
+        <li>
+          Deadlift: {{ prev_stats.deadlift }} at {{ prev_stats.deadlift_weight }}LB
+        </li>
+      </ul>
+      {% endif %}
+    </div>
   </div>
-  <form method="POST" role="form">
-    <input value="save" class="btn-large btn-full-width" type="submit" onclick="workout_complete();">
-    </form>
-</div>
-<!--    </div>
+  <div class="card-panel">
+    <div class="panel-content">
+      <label><strong>Current Workout: {{ next_stats.workout_a_or_b }}</strong></label> 
+      {% if next_stats.workout_a_or_b == "A" %}
+      <ul>
+        <li>
+          Squat: 5x5  at {{ next_stats.squat_weight }}LB
+        </li>
+        <li>
+          Bench: 5x5 at {{ next_stats.bench_weight }}LB
+        </li>
+        <li>
+          Row: 5x5 at {{ next_stats.row_weight }}LB
+        </li>
+      </ul>
+      {% else %}
+      <ul>
+        <li>
+          Squat: 5x5 at {{ next_stats.squat_weight }}LB
+        </li>
+        <li>
+          Press: 5x5 at {{ next_stats.press_weight }}LB
+        </li>
+        <li>
+          Deadlift: 1x5 at {{ next_stats.deadlift_weight }}LB
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+  <form method="POST"> 
+    <button class="btn-large btn-full-width" type="submit">GO!</button>
+  </form>
+
+  </div>
+  <!-- <form method="POST"> 
+    <button class="btn-large" type="submit">New Workout!</button>
+  </form>
  -->
-    </div>
-
-  <!-- <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer> -->
-
-
-  <!--  Scripts-->
-  <script src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
-  <script src="static/js/materialize.js"></script>
-  <script src="static/js/init.js"></script>
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-  </body>
-</html>
+  </div>
+  {% endblock %}
+  
