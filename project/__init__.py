@@ -77,10 +77,10 @@ def find_previous_and_current_workout():
 
 def check_if_set_was_failed(exercise_set, weight):
   failed = False
-  if exercise_set == '':
+  if exercise_set == '' or '' in exercise_set:
     return weight
-    for reps in exercise_set:
-      if int(reps) < 5:
+  for reps in exercise_set:
+    if int(reps) < 5:
         failed = True
   if failed:
     return weight
@@ -143,10 +143,17 @@ def save_workout(entry_id):
       if workout_complete.workout_a_b == "B":
         press_reps = request.form.get('press')
         deadlift_reps = request.form.get('deadlift')
-        complete_flag = int('' not in squat_reps.split(',') or
-                            '' not in press_reps.split(',') or 
-                            '' not in deadlift_reps.split(','))
-        if squat_reps and press_reps and deadlift_reps:
+        if deadlift_reps == '':
+          deadlift_reps = ','
+        try:
+          complete_flag = int('' not in squat_reps.split(',') or
+                              '' not in press_reps.split(',') or 
+                              '' not in deadlift_reps.split(',')
+                            )
+        except Exception:
+          return str(Exception)
+
+        if squat_reps and press_reps:
           workout_complete.squat_reps = squat_reps
           workout_complete.press_reps = press_reps
           workout_complete.deadlift_reps = deadlift_reps

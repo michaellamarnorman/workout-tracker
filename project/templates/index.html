@@ -1,122 +1,100 @@
 {% extends '_layout.html' %}
 
-  {% block content %}
-    <!-- Page Layout here -->
+{% block content %}
 
     <div class="row container">
 
-     <!--  <div class="col s12 m4 l3">  Note that "m4 l3" was added 
-         Grey navigation panel
+    <div class="col s12 m8 l12 right"></div>
 
-              This content will be:
-          3-columns-wide on large screens,
-          4-columns-wide on medium screens,
-          12-columns-wide on small screens  
 
-          <div class="card-panel">
-            <div class="panel-content">Maybe a menu here?</div>
-            
-          </div>
-          
-      </div> -->
+    <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header"><i class="mdi-action-announcement"></i>Important information!! Read</div>
 
-      <div class="col s12 m8 l12 right"> <!-- Note that "m8 l9" was added -->
-        <!-- Teal page content
+            <div class="collapsible-body"><p>Currently there is no user authentication, nor are workouts mapped to a user id.
+                The next step is adding user authentication and adding the relatinships to users.
+                Authentication is easy, setting up the relationships on the other hand will take
+                some experimentation.  Also, it is only 5x5 at the moment.  Using 5x5 made it
+                easy for me to test, additional workouts will be added in the future. Final thought,
+                I just realized there is no timer between sets.  I will work on adding that with
+                toasts that are a part of the Materialize CSS project.  I don't think there is
+                any way to make the phone vibrate at certain intervals. So, I will just add a
+                sound, possibly a ding sound.</p></div>
+        </li>
+    </ul>
 
-              This content will be:
-          9-columns-wide on large screens,
-          8-columns-wide on medium screens,
-          12-columns-wide on small screens  -->
 
-  <ul class="collapsible popout" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="mdi-action-announcement
-"></i>Important information!! Read</div>
-      <div class="collapsible-body"><p>Currently there is no user authentication, nor are workouts mapped to a user id.
-      The next step is adding user authentication and adding the relatinships to users.
-      Authentication is easy, setting up the relationships on the other hand will take
-      some experimentation.  Also, it is only 5x5 at the moment.  Using 5x5 made it 
-      easy for me to test, additional workouts will be added in the future. Final thought,
-      I just realized there is no timer between sets.  I will work on adding that with
-      toasts that are a part of the Materialize CSS project.  I don't think there is
-      any way to make the phone vibrate at certain intervals. So, I will just add a
-      sound, possibly a ding sound.</p></div>
-    </li> 
-  </ul>
-          
-          
-  <div class="section no-pad-bot" id="index-banner">
-  <div class="card-panel">
-    <div class="panel-content">
-      <label><strong>Previous Workout: {{ prev_stats.workout_a_or_b }} - 
-      {{ prev_stats.workout_start_day.month }}/
-      {{ prev_stats.workout_start_day.day }}/
-      {{ prev_stats.workout_start_day.year }}</strong></label> 
-      {% if prev_stats.workout_a_or_b == "A" %}
-      <ul>
-        <li>
-          Squat: {{ prev_stats.squat }} at {{ prev_stats.squat_weight }}LB
-        </li>
-        <li>
-          Bench: {{ prev_stats.bench }} at {{ prev_stats.bench_weight }}LB
-        </li>
-        <li>
-          Row: {{ prev_stats.row }} at {{prev_stats.row_weight }}LB
-        </li>
-      </ul>
-      {% else %}
-      <ul>
-        <li>
-          Squat: {{ prev_stats.squat }} at {{ prev_stats.squat_weight }}LB
-        </li>
-        <li>
-          Press: {{ prev_stats.press }} at {{ prev_stats.press_weight }}LB
-        </li>
-        <li>
-          Deadlift: {{ prev_stats.deadlift }} at {{ prev_stats.deadlift_weight }}LB
-        </li>
-      </ul>
-      {% endif %}
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="card-panel">
+            <div class="panel-content">
+                <label><strong>Previous Workout: {{ prev_stats.workout_a_or_b }} -
+                    {{ prev_stats.workout_start_day.month }}/
+                    {{ prev_stats.workout_start_day.day }}/
+                    {{ prev_stats.workout_start_day.year }}</strong></label>
+                {% if prev_stats.workout_a_or_b == "A" %}
+                    <ul>
+                        <li>
+                            SQ: {{ prev_stats.squat }} at {{ prev_stats.squat_weight }}LB
+                        </li>
+                        <li>
+                            BP: {{ prev_stats.bench }} at {{ prev_stats.bench_weight }}LB
+                        </li>
+                        <li>
+                            Row: {{ prev_stats.row }} at {{prev_stats.row_weight }}LB
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li>
+                            SQ: {{ prev_stats.squat }} at {{ prev_stats.squat_weight }}LB
+                        </li>
+                        <li>
+                            OHP: {{ prev_stats.press }} at {{ prev_stats.press_weight }}LB
+                        </li>
+                        <li>
+                            DL: {{ prev_stats.deadlift }} at {{ prev_stats.deadlift_weight }}LB
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-panel">
+            <div class="panel-content">
+                <label><strong>Current Workout: {{ next_stats.workout_a_or_b }}</strong></label>
+                {% if next_stats.workout_a_or_b == "A" %}
+                    <ul>
+                        <li>
+                            SQ: 5x5  at {{ next_stats.squat_weight }}LB
+                        </li>
+                        <li>
+                            BP: 5x5 at {{ next_stats.bench_weight }}LB
+                        </li>
+                        <li>
+                            Row: 5x5 at {{ next_stats.row_weight }}LB
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li>
+                            SQ: 5x5 at {{ next_stats.squat_weight }}LB
+                        </li>
+                        <li>
+                            OHP: 5x5 at {{ next_stats.press_weight }}LB
+                        </li>
+                        <li>
+                            DL: 1x5 at {{ next_stats.deadlift_weight }}LB
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+            <form method="POST">
+                <button class="btn-large btn-full-width" type="submit">GO!</button>
+            </form>
+
+        </div>
+        <!-- <form method="POST">
+          <button class="btn-large" type="submit">New Workout!</button>
+        </form>
+       -->
     </div>
-  </div>
-  <div class="card-panel">
-    <div class="panel-content">
-      <label><strong>Current Workout: {{ next_stats.workout_a_or_b }}</strong></label> 
-      {% if next_stats.workout_a_or_b == "A" %}
-      <ul>
-        <li>
-          Squat: 5x5  at {{ next_stats.squat_weight }}LB
-        </li>
-        <li>
-          Bench: 5x5 at {{ next_stats.bench_weight }}LB
-        </li>
-        <li>
-          Row: 5x5 at {{ next_stats.row_weight }}LB
-        </li>
-      </ul>
-      {% else %}
-      <ul>
-        <li>
-          Squat: 5x5 at {{ next_stats.squat_weight }}LB
-        </li>
-        <li>
-          Press: 5x5 at {{ next_stats.press_weight }}LB
-        </li>
-        <li>
-          Deadlift: 1x5 at {{ next_stats.deadlift_weight }}LB
-        </li>
-      </ul>
-      {% endif %}
-    </div>
-  <form method="POST"> 
-    <button class="btn-large btn-full-width" type="submit">GO!</button>
-  </form>
-
-  </div>
-  <!-- <form method="POST"> 
-    <button class="btn-large" type="submit">New Workout!</button>
-  </form>
- -->
-  </div>
-  {% endblock %}
-  
+{% endblock %}
