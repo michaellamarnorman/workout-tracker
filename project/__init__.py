@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify, abort, flash
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_user, login_required, current_user, logout_user
-
+from project.forms import LoginForm, RegisterForm
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -10,6 +10,13 @@ login_manager = LoginManager()
 from project.models import WorkoutA, User
 login_manager.init_app(app)
 
+
+
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text, error), 'error')
 
 def find_previous_and_current_workout(user_id):
   previous_workout = db.session.query(WorkoutA).filter_by(user_id=user_id).order_by(WorkoutA.entry_id.desc()).first()
@@ -102,16 +109,20 @@ def load_user(userid):
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+  form = LoginForm()
+  if form.validate_on_submit():
 
-  if request.method == "POST":
-    name = request.form.get('name')
-    password = request.form.get('password')
+  #if request.method == "POST":
+    name = form.username.data
+    password = form.password.data
     user = db.session.query(User).filter_by(name=name, password=password).first()
-    login_user(user)
-
-    return redirect(url_for('user_home', username=user.name, userid=user.id))
-
-  return render_template('login.html')
+    if user:
+      login_user(user)
+      return redirect(url_for('user_home', username=user.name, userid=user.id))
+    else:
+      flash("Username or password was incorrect.")
+      return redirect(url_for('login'))
+  return render_template('login.html', form=form)
 
 @app.route('/logout', methods=["GET", "POST"])
 @login_required
@@ -122,18 +133,19 @@ def logout():
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
-
-  if request.method == "POST":
-    username = request.form.get('username')
-    password = request.form.get('password')
-    email = request.form.get('email')
-    confirm_password = request.form.get('confirm-password')
+  form = RegisterForm()
+  if form.validate_on_submit():
+  #if request.method == "POST":
+    username = form.username.data
+    password = form.password.data
+    email = form.email.data
+    confirm_password = form.confirm.data
 
     user_name = db.session.query(User).filter_by(name=username).first()
     user_email = db.session.query(User).filter_by(email=email).first()
     if user_name or user_email:
       flash("Username and/or email already exists.")
-      return render_template('register.html')
+      return redirect(url_for('register'))
     else:
         user = User(
           name=username,
@@ -150,7 +162,11 @@ def register():
         flash("Registration successfull!")
         return redirect(url_for('login'))
 
-  return render_template("register.html")
+  else:
+    #error = flash_errors(form)
+    return render_template('register.html', form=form)
+
+  return render_template("register.html", form=form)
 
 @app.route('/', methods=["GET", "POST"])
 def index():

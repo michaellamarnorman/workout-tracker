@@ -3,17 +3,20 @@
 {% block content %}
     <div class="row">
     <form class="col s12" action="" method="POST">
+    {{ form.csrf_token }}
       <div class="row">
         <div class="input-field col s12">
-          <input name='name' placeholder="Username" id="username" type="text" class="validate">
-          <label for="username">Username  </label>
+          {% if form.username.errors %}{% for error in form.username.errors %}{{ error }}{% endfor %}{% endif %}
+          {{ form.username.label(for="username") }}
+          {{ form.username(placeholder="Username",id="username", class="validate") }}
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Password" name='password' id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
+       <div class="input-field col s12">
+          {% if form.password.errors %}{% for error in form.password.errors %}{{ error }}{% endfor %}{% endif %}
+          {{ form.password.label(for="password") }}
+          {{ form.password(placeholder="Password",id="password", class="validate") }}
+        </div> 
       </div>
       <button class="btn-large btn-full-width" type="submit">Login</button>
     </form>
