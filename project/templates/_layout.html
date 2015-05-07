@@ -23,6 +23,7 @@
         <li><a href="https://github.com/mlnorman/workout-tracker">Github</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
         <li><a href="{{ url_for('database_view', username=current_user.name, userid=current_user.id) }}">Previous Workouts</a></li>
         <li><a href="https://github.com/mlnorman/workout-tracker">Github</a></li>
       </ul>

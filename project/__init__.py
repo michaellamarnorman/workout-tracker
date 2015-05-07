@@ -171,9 +171,11 @@ def register():
 @app.route('/', methods=["GET", "POST"])
 def index():
   user = current_user
+  form = LoginForm()
+  rform = RegisterForm()
   if current_user.is_authenticated():
     return redirect(url_for('user_home', username=user.name, userid=user.id))
-  return render_template('index.html')
+  return render_template('index.html', form=form, rform=rform)
 
 
 @app.route('/<username>/<int:userid>/home', methods=["GET", "POST"])

@@ -9,8 +9,48 @@
      working on windows and i dont feel like using a virtual box. Password hashing is 
      a trivial task anyway, it can wait.</p>
         <div class="row">
-            <a href="{{ url_for('login') }}" class="btn-large center">Login</a>
-            <a href="{{ url_for('register') }}" class="btn-large">Register</a>
+<!--             <a href="{{ url_for('login') }}" class="btn-large center">Login</a>
+            <a href="{{ url_for('register') }}" class="btn-large">Register</a> -->
+
+                     <!-- Modal Trigger -->
+          <button data-target="modal-login" style="width: 45%;" class="btn btn-large modal-login">Login</button><label class="bold"><strong> or </strong></label>
+            <a href="{{ url_for('register') }}" style="width: 45%;" class="btn-large">Register</a> 
+
+          <!-- Modal Structure -->
+        <div id="modal-login" class="modal">
+                <form class="col s12" action="{{ url_for('login') }}" method="POST">
+                {{ form.csrf_token }}
+            <div class="modal-content">
+                <h5 class="red-text">Login</h5>
+                <div class="row">
+                    <div class="input-field col s12">
+                      {% if form.username.errors %}{% for error in form.username.errors %}{{ error }}{% endfor %}{% endif %}
+                      {{ form.username.label(for="username") }}
+                      {{ form.username(placeholder="Username",id="username", class="validate") }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      {% if form.password.errors %}{% for error in form.password.errors %}{{ error }}{% endfor %}{% endif %}
+                      {{ form.password.label(for="password") }}
+                      {{ form.password(placeholder="Password",id="password", class="validate") }}
+                    </div> 
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button class="modal-action modal-close waves-effect waves-green btn-full-width btn-flat teal white-text" type="submit">Login</button>
+                </div>
+                </form>
+            
+            </div>      
+
+        </div>
+        <div class="row">
+<!--             <a href="{{ url_for('login') }}" class="btn-large center">Login</a> -->
+           <!--  <a href="{{ url_for('register') }}" class="btn-large btn-full-width">Register</a> 
+ -->
+
+        
         </div>
     </div>
 </div>
