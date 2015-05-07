@@ -3,31 +3,56 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Workout</title>
+  <title>{% block title %}Workout App{% endblock %}</title>
 
   <!-- CSS  -->
   <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
-
 </head>
 <body onload="show()">
- 
      <nav class="teal">
     <div class="nav-wrapper">
-      <a href="{{ url_for('index') }}" class="brand-logo">Workout</a>
+      <a href="{{ url_for('index') }}" class="brand-logo">{% block workout %}Workout App{% endblock %}</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      {% if current_user.is_authenticated() %}
       <ul class="right hide-on-med-and-down">
-        <li><a href="{{ url_for('database_view') }}">Previous Workouts</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><a href="{{ url_for('database_view', username=current_user.name, userid=current_user.id) }}">Previous Workouts</a></li>
         <li><a href="https://github.com/mlnorman/workout-tracker">Github</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a href="{{ url_for('database_view') }}">Previous Workouts</a></li>
+        <li><a href="{{ url_for('database_view', username=current_user.name, userid=current_user.id) }}">Previous Workouts</a></li>
         <li><a href="https://github.com/mlnorman/workout-tracker">Github</a></li>
       </ul>
+      {% else %}
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="https://github.com/mlnorman/workout-tracker">Github</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="https://github.com/mlnorman/workout-tracker">Github</a></li>
+      </ul>
+      {% endif %}
     </div>
   </nav>
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="row">
+            <div class="col s12 l12">
+            {% for message in messages %}
+              <div class="card-panel teal">
+                <span class="white-text">
+                  {{ message }}
+                </span>
+              </div>
+            {% endfor %}
+            </div>
+        </div>
+      {% endif %}
+    {% endwith %}
   {% block content %}
 
   {% endblock %}
@@ -38,6 +63,7 @@
   <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
   <script src="{{ url_for('static', filename='js/init.js') }}"></script>
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
+  {% block extra_scripts %}
+  {% endblock %}
   </body>
 </html>

@@ -2,6 +2,43 @@ from project import db
 import datetime
 
 
+
+
+class User(db.Model):
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
+    role = db.Column(db.String, default='user')
+    workouts = db.relationship('WorkoutA', backref="athlete")
+
+    def __init__(self, name=None, email=None, password=None, role=None):
+        self.name= name 
+        self.email = email
+        self.password = password
+        self.role = role
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.id
+
+
+    def __str__(self):
+        return 'User: %s'.format(self.name)
+
+
+
 class WorkoutA(db.Model):
     __tablename__ = 'a_exercises'
 
@@ -24,13 +61,16 @@ class WorkoutA(db.Model):
     deadlift_sets = db.Column(db.Integer, nullable=True)
     workout_a_b = db.Column(db.String, nullable=False)
     workout_complete = db.Column(db.Integer, nullable=False)
+    workout_number = db.Column(db.Integer, autoincrement=True , nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
 
     def __init__(self, start_time = datetime.datetime.now, squat_reps="",
         bench_reps="", row_reps="", press_reps="", deadlift_reps="",
-        squat_weight=None, bench_weight=None, row_weight=None, 
-        press_weight=None, deadlift_weight=None, squat_sets=None,
-        bench_sets=None,  row_sets=None,  press_sets=None,  deadlift_sets=None,
-        workout_a_b='A', workout_complete=0):
+        squat_weight=45, bench_weight=45, row_weight=45, 
+        press_weight=45, deadlift_weight=45, squat_sets=25,
+        bench_sets=25,  row_sets=25,  press_sets=25,  deadlift_sets=5,
+        workout_a_b='B', workout_complete=0, workout_number=0 , user_id=None):
         self.squat_reps = squat_reps
         self.bench_reps = bench_reps
         self.row_reps = row_reps
@@ -48,6 +88,8 @@ class WorkoutA(db.Model):
         self.deadlift_sets = deadlift_sets
         self.workout_a_b = workout_a_b
         self.workout_complete = workout_complete
+        self.workout_number = workout_number
+        self.user_id = user_id
 
     def __repr__(self):
         return "Squat: {}, Bench: {}, Row: {}".format(self.squat_reps, self.bench_reps, self.row_reps)

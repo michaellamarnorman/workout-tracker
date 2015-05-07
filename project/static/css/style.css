@@ -61,3 +61,80 @@
 .btn-full-width{
   width: 100%;
 }
+
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.pad{
+  margin: 0 2% 0 2%;
+}
+.gray{
+  background-color: #d3d3d3;
+}
+
+.lab{
+  text-decoration: underline;
+  font-weight: bolder;
+  vertical-align: middle;
+  padding: 0 2%;
+
+}
+
+.rep-button{
+  text-decoration: underline;
+  font-weight: bolder;
+  vertical-align: middle;
+  margin: 0 0 0 30%;
+  border-radius: 0;
+}
+
+.select{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.workout{
+  width: 100%;
+}
+
+.row-height{
+  height: 100%;
+}
+.lab1{
+  width: 50%;
+}
+.hidding p{
+  display: none;
+
+}
+
+
+.cont{
+    #border: 1px solid #ccc;
+    text-align: center;
+    width: 100%;
+}
+.cat{
+    display: inline-block;
+    height:40px;
+    width: 40px;
+    
+    background: #ccc;
+    margin: 1%;
+    border-radius: 0;
+}
+
+.collection .collection-item {
+  background-color: #fff;
+  line-height: 1.5rem;
+  padding: 10px 0;
+  margin: 0;
+  border-bottom: 1px solid #e0e0e0;
+  width:100%;
+}

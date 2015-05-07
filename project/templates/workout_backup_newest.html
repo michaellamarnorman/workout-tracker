@@ -1,0 +1,235 @@
+{% extends '_layout.html' %}
+
+{% block content %}
+
+
+    <div class="row">
+
+   <div class="col s12 m8 l9 right">
+        <div id="modal1" class="modal bottom-sheet">
+            <div class="modal-content center">
+                <h5>Wait up to 3 minutes before the next set.</h5>
+            <div id="time"></div>
+        </div>
+    </div>
+
+    <div class="col s12 m8 l9 right">
+
+
+    <div class="section no-pad-bot" id="index-banner">
+    <div id="workout-type" style="display:none">{{ id }}</div>
+    <div id="workout-workout" style="display:none">{{ workout }}</div>
+    <!--  <div class="container">-->
+    {% if workout == 'A' %}
+        <div class="hide" id="squat-weight">{{ workout_stats.squat_weight }}</div>
+        <div class="hide" id="bench-weight">{{ workout_stats.bench_weight }}</div>
+        <div class="hide" id="row-weight">{{ workout_stats.row_weight }}</div>
+        <h4>Workout {{ workout }}</h4>
+        <div class="row">
+        <div class="">
+            <ul class="collapsible workout col" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header lab">Squat<span><i class="mdi-action-view-headline"></i>
+    </span></div>
+                    <div class="collapsible-body select">
+                        <p id="squat-complete" class="hidding lab"></p>
+                    </div>
+                   <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat1" style="border-radius: 0;" onclick="reps('squat1')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[0] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat2" style="border-radius: 0;" onclick="reps('squat2')" >{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[1] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat3" style="border-radius: 0;" onclick="reps('squat3')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[2] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat4" style="border-radius: 0;" onclick="reps('squat4')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[3] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat5" style="border-radius: 0;" onclick="reps('squat5')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[4] }}{% endif %}</span>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                <li>
+                    <div class="collapsible-header lab" id="bench-parent">Bench<span><i class="mdi-action-view-headline"></i>
+</span></div>
+
+                    <div class="collapsible-body select">
+                        <p id="bench-complete" class="hidding lab"></p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="bench1" style="border-radius: 0;" onclick="reps('bench1');">{% if workout_stats.bench_reps %}{{ workout_stats.bench_reps.split(',')[0] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="bench2" style="border-radius: 0;" onclick="reps('bench2');">{% if workout_stats.bench_reps %}{{ workout_stats.bench_reps.split(',')[1] }}{% endif %}</span>
+                        </p></div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="bench3" style="border-radius: 0;" onclick="reps('bench3');">{% if workout_stats.bench_reps %}{{ workout_stats.bench_reps.split(',')[2] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="bench4" style="border-radius: 0;" onclick="reps('bench4');">{% if workout_stats.bench_reps %}{{ workout_stats.bench_reps.split(',')[3] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.bench_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="bench5" style="border-radius: 0;" onclick="reps('bench5');">{% if workout_stats.bench_reps %}{{ workout_stats.bench_reps.split(',')[4] }}{% endif %}</span>
+                        </p>
+                    </div>
+                </li>
+                </li>
+                <li>
+                <li>
+                    <div class="collapsible-header lab">Row<span><i class="mdi-action-view-headline"></i>
+</span></div>
+                    <div class="collapsible-body select">
+                        <p id="row-complete" class="hidding lab"></p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="row1" style="border-radius: 0;" onclick="reps('row1');">{% if workout_stats.row_reps %}{{ workout_stats.row_reps.split(',')[0] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="row2" style="border-radius: 0;" onclick="reps('row2');">{% if workout_stats.row_reps %}{{ workout_stats.row_reps.split(',')[1] }}{% endif %}</span>
+                        </p></div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="row3" style="border-radius: 0;" onclick="reps('row3');">{% if workout_stats.row_reps %}{{ workout_stats.row_reps.split(',')[2] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="row4" style="border-radius: 0;" onclick="reps('row4');">{% if workout_stats.row_reps %}{{ workout_stats.row_reps.split(',')[3] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.row_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="row5" style="border-radius: 0;" onclick="reps('row5');">{% if workout_stats.row_reps %}{{ workout_stats.row_reps.split(',')[4] }}{% endif %}</span>
+                        </p>
+                    </div>
+                </li>
+                </li>
+            </ul>
+        </div>
+    {% else %}
+        <div class="hide" id="squat-weight">{{ workout_stats.squat_weight }}</div>
+        <div class="hide" id="press-weight">{{ workout_stats.press_weight }}</div>
+        <div class="hide" id="deadlift-weight">{{ workout_stats.deadlift_weight }}</div>
+        <h4>Workout {{ workout }}</h4>
+
+        <div class="row">
+        <div class="">
+            <ul class="collapsible workout col" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header lab">Squat<span><i class="mdi-action-view-headline"></i>
+    </span></div>
+                    <div class="collapsible-body select">
+                        <p id="squat-complete" class="hidding lab"></p>
+                    </div>
+                   <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat1" style="border-radius: 0;" onclick="reps('squat1')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[0] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat2" style="border-radius: 0;" onclick="reps('squat2')" >{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[1] }}{% endif %}</span>
+                        </p></div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat3" style="border-radius: 0;" onclick="reps('squat3')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[2] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat4" style="border-radius: 0;" onclick="reps('squat4')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[3] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.squat_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="squat5" style="border-radius: 0;" onclick="reps('squat5')">{% if workout_stats.squat_reps %}{{ workout_stats.squat_reps.split(',')[4] }}{% endif %}</span>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                <li>
+                    <div class="collapsible-header lab" id="bench-parent">Press<span><i class="mdi-action-view-headline"></i>
+</span></div>
+
+                    <div class="collapsible-body select">
+                        <p id="press-complete" class="hidding lab"></p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="press1" style="border-radius: 0;" onclick="reps('press1');">{% if workout_stats.press_reps %}{{ workout_stats.press_reps.split(',')[0] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="press2" style="border-radius: 0;" onclick="reps('press2');">{% if workout_stats.press_reps %}{{ workout_stats.press_reps.split(',')[1] }}{% endif %}</span>
+                        </p></div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="press3" style="border-radius: 0;" onclick="reps('press3');">{% if workout_stats.press_reps %}{{ workout_stats.press_reps.split(',')[2] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="press4" style="border-radius: 0;" onclick="reps('press4');">{% if workout_stats.press_reps %}{{ workout_stats.press_reps.split(',')[3] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.press_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="press5" style="border-radius: 0;" onclick="reps('press5');">{% if workout_stats.press_reps %}{{ workout_stats.press_reps.split(',')[4] }}{% endif %}</span>
+                        </p>
+                    </div>
+                    </li>
+                </li>
+                <li>
+                <li>
+                    <div class="collapsible-header lab">DeadLift<span><i class="mdi-action-view-headline"></i>
+</span></div>
+                    <div class="collapsible-body select">
+                        <p id="deadlift-complete" class="hidding lab"></p>
+                    </div>
+                    <div class="collapsible-body select">
+                        <p class="lab">{{ workout_stats.deadlift_weight }}LB X 5
+                            <span class="btn btn-floating rep-button gray" id="deadlift1" style="border-radius: 0;" onclick="reps('deadlift1');">{% if workout_stats.deadlift_reps %}{{ workout_stats.deadlift_reps.split(',')[0] }}{% endif %}</span>
+                        </p>
+                    </div>
+                </li>
+                </li>
+            </ul>
+        </div>
+
+    {% endif %}
+
+<button id="save-btn" type="button" class="btn-large btn-full-width" onclick="workout_completed();">Save</button>
+</div>
+
+</div>
+
+ 
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{{ url_for('static', filename='js/onload.js') }}"></script>
+{% endblock %}

@@ -25,8 +25,10 @@ function reps(exercise){
     var exercise_type = exercise.substring(0, exercise.length - 1);
     //var workout_a_or_b = document.getElementById('workout-workout').innerHTML;
     check_sets_complete(exercise_type);
-    if(x.innerHTML !== '' && exercise.substring(exercise.length - 1, exercise.length) !== '5') {
+   /* if(x.innerHTML !== '' && exercise.substring(exercise.length - 1, exercise.length) !== '5'
+        && x.getAttribute('id') !== 'deadlift1') {
         timeouts.push(setTimeout(function () {
+            write_updates();
             $('#modal1').openModal(
                 {
                     dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -42,7 +44,30 @@ function reps(exercise){
                 }
             );
 
-        }, 1500));
+        }, 1500));*/
+    
+        if(x.innerHTML !== '') {
+        timeouts.push(setTimeout(function () {
+            write_updates();
+            if (exercise.substring(exercise.length - 1, exercise.length) !== '5'
+                && x.getAttribute('id') !== 'deadlift1'){
+                $('#modal1').openModal(
+                    {
+                        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                        opacity: .5, // Opacity of modal background
+                        in_duration: 300, // Transition in duration
+                        out_duration: 200, // Transition out duration
+                        ready: function () {
+                            start();
+                        }, // Callback for Modal open
+                        complete: function () {
+                            reset();
+                        } // Callback for Modal close
+                    }
+                );
+            }
+
+        }, 1500))
     }
     //var workout_complete = check_if_workout_is_complete();
     //console.log('r : ' + workout_complete);
@@ -89,17 +114,17 @@ function check_sets_complete(exercise){
             var failed_sets = validate_reps_per_set(reps_per_set);
             if(failed_sets){
                 var failed_response = "It's ok to fail.  Try again next workout.";
-                document.getElementById(exercise + '-complete').innerHTML = failed_response;
-                document.getElementById(exercise + '-complete').style.display = "block";
+                //document.getElementById(exercise + '-complete').innerHTML = failed_response;
+                //document.getElementById(exercise + '-complete').style.display = "block";
 
             }else{
                 var success_response = "Congrats on "+ weight +" on "+ exercise + "!";
-                document.getElementById(exercise + '-complete').innerHTML = success_response;
-                document.getElementById(exercise + '-complete').style.display = "block";
+                //document.getElementById(exercise + '-complete').innerHTML = success_response;
+                //document.getElementById(exercise + '-complete').style.display = "block";
             }
             //document.getElementById('bench-complete').innerHTML = "Congrats";
         }else{
-            document.getElementById(exercise + '-complete').style.display = 'none';
+           // document.getElementById(exercise + '-complete').style.display = 'none';
 
         }
 
@@ -158,23 +183,25 @@ function workout_completed(){
     var squats_complete = exercise_not_completed(squat);
     var not_complete = false;
     var workout_data = {};
-    if(document.getElementById("workout-workout").innerHTML === "A"){
-        var bench = get_sets_from_html("bench");
-        var row = get_sets_from_html("row");
+    var bench, row, press, deadlift;
+    var workout_type = document.getElementById("workout-workout").innerHTML; 
+    if(workout_type === "A"){
+        bench = get_sets_from_html("bench");
+        row = get_sets_from_html("row");
         console.log(row);
         var bench_complete = exercise_not_completed(bench);
         var row_complete = exercise_not_completed(row);
         not_complete = squats_complete || bench_complete || row_complete;
-        workout_data = {squat: squat.join(), bench: bench.join(), row: row.join()};
+        //workout_data = {squat: squat.join(), bench: bench.join(), row: row.join()};
     }
-    if(document.getElementById("workout-workout").innerHTML === "B"){
-        var press = get_sets_from_html("press");
-        var deadlift = get_sets_from_html("deadlift");
+    if(workout_type === "B"){
+        press = get_sets_from_html("press");
+        deadlift = get_sets_from_html("deadlift");
         console.log(press);
         var press_complete = exercise_not_completed(press);
         var deadlift_complete = exercise_not_completed(deadlift);
         not_complete = squats_complete || press_complete || deadlift_complete;
-        workout_data = {squat: squat.join(), press: press.join(), deadlift: deadlift.join()};
+        //workout_data = {squat: squat.join(), press: press.join(), deadlift: deadlift.join()};
     }
     var confirm_complete = false;
     if(not_complete){
@@ -183,7 +210,7 @@ function workout_completed(){
         confirm_complete = confirm("Are you ready to submit this workout?");
     }
 
-    if(confirm_complete){
+    /*if(confirm_complete){
         $.ajax({
             method: "POST",
             url: "/save_workout/" + document.getElementById('workout-type').innerHTML,
@@ -192,10 +219,120 @@ function workout_completed(){
             .success(function( msg ) {
                 alert(msg);
                 console.log(msg);
+                window.location.href="/"
+            });
+    }*/
+    if (confirm_complete){
+        username = document.getElementById('workout-username').innerHTML;
+        userid = document.getElementById('workout-userid').innerHTML;
+        var form = document.createElement('form');
+
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', '/save_workout/' + username + '/' + userid + '/' + document.getElementById('workout-type').innerHTML);
+        form.style.display = 'hidden';
+        input1=document.createElement('input'); 
+        input2=document.createElement('input'); 
+        input3=document.createElement('input'); 
+        input4=document.createElement('input'); 
+        input5=document.createElement('input'); 
+
+        input1.type='hidden'; 
+        input1.name='squat'; 
+        input1.value=squat.join(); 
+        form.appendChild(input1);
+        console.log(input1.value);
+
+        if(workout_type === 'A'){
+            input2.type='hidden'; 
+            input3.type='hidden'; 
+            
+            input2.name='bench'; 
+            input3.name='row'; 
+        
+            input2.value=bench.join(); 
+            input3.value=row.join(); 
+
+            form.appendChild(input2);
+            form.appendChild(input3);
+
+            console.log(input2.value);
+            console.log(input3.value);
+
+        }
+
+        if(workout_type === 'B'){
+            input4.type='hidden'; 
+            input5.type='hidden';
+
+            input4.name='press'; 
+            input5.name='deadlift'; 
+
+            input4.value=press.join(); 
+            input5.value=deadlift.join(); 
+
+            form.appendChild(input4);
+            form.appendChild(input5);
+            document.body.appendChild(form)
+            console.log(input4.value);
+            console.log(input5.value);
+            
+        }
+        form.submit();
+    }
+
+}
+
+
+function write_updates(){
+    var squat = get_sets_from_html("squat");
+    var squats_complete = exercise_not_completed(squat);
+    //var not_complete = true;
+    var workout_data = {};
+    if(document.getElementById("workout-workout").innerHTML === "A"){
+        var bench = get_sets_from_html("bench");
+        var row = get_sets_from_html("row");
+        //console.log(row);
+        var bench_complete = exercise_not_completed(bench);
+        var row_complete = exercise_not_completed(row);
+        not_complete = squats_complete || bench_complete || row_complete;
+        workout_data = {squat: squat.join(), bench: bench.join(), row: row.join()};
+    }
+    if(document.getElementById("workout-workout").innerHTML === "B"){
+        var press = get_sets_from_html("press");
+        var deadlift = get_sets_from_html("deadlift");
+        //console.log(press);
+        var press_complete = exercise_not_completed(press);
+        var deadlift_complete = exercise_not_completed(deadlift);
+        not_complete = squats_complete || press_complete || deadlift_complete;
+        workout_data = {squat: squat.join(), press: press.join(), deadlift: deadlift.join()};
+    }
+    var confirm_complete = true;
+    /*if(not_complete){
+        confirm_complete = confirm("All of your sets are not complete, are you sure you want to submit?");
+    }else{
+        confirm_complete = confirm("Are you ready to submit this workout?");
+    }*/
+
+    if(confirm_complete){
+        var username = document.getElementById('workout-username').innerHTML;
+        var userid = document.getElementById('workout-userid').innerHTML;
+        $.ajax({
+            method: "POST",
+            url: "/write_updates/" + username + '/' + userid + '/' + document.getElementById('workout-type').innerHTML,
+            data: workout_data
+        })
+            .success(function( msg ) {
+                //alert(msg);
+                console.log("ajax update completed successfully");
+            })
+            .error(function(err){
+                alert(err);
+                console.log("ajax update had the following error: " + err);
             });
     }
 
 }
+
 
 $( document ).ready(function(){
 
@@ -275,7 +412,7 @@ function formatTime(time) {
     s = Math.floor( time / 1000 );
     ms = time % 1000;
 
-    newTime = pad(h, 2) + ':' + pad(m, 2) + ':' + pad(s, 2) + ':' + pad(ms, 3);
+    newTime = pad(m, 2) + ':' + pad(s, 2);
     return newTime;
 }
 

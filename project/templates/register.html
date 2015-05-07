@@ -1,0 +1,35 @@
+{% extends '_layout.html' %}
+
+{% block content %}
+    <div class="container" style="margin-top: 3%;">
+      <div class="row">
+        <form class="col s12" action="" method="POST">
+          <div class="row">
+            <div class="input-field col s12">
+              <input name='username' placeholder="Username" id="username" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Email" name='email' id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Password" name='password' id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Confirm Password" name='confirm_password' id="confirm_password" type="password" class="validate">
+              <label for="confirm_password">Confirm Password</label>
+            </div>
+          </div>
+          <button class="btn-large btn-full-width" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+{% endblock %}

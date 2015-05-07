@@ -1,6 +1,7 @@
 {% extends '_layout.html' %}
 
 {% block content %}
+
 <div class="section no-pad-bot" style="padding: 0 3% 0 3%" id="index-banner">
   <h4>Direct output from the database minus a few columns.</h4>
   <table class='hoverable'>
@@ -13,6 +14,7 @@
         <th>Row/Weight</th>
         <th>Press/Weight</th>
         <th>Deadlift/Weight</th>
+        <th>User</th>
         <th>Completed (bool)</th>
       </tr>
     </thead>
@@ -26,6 +28,7 @@
           <td>{% if workout.row_reps %}{{ workout.row_reps }} x {{workout.row_weight }}LB{% endif %}</td>
           <td>{% if workout.press_reps %}{{ workout.press_reps }} x {{workout.press_weight }}LB{% endif %}</td>
           <td>{% if workout.deadlift_reps %}{{ workout.deadlift_reps }} x {{workout.deadlift_weight }}LB{% endif %}</td>
+          <td>{{ workout.athlete.name }}</td>
           <td>{{ workout.workout_complete }}</td>
           
         </tr>
