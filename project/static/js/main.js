@@ -67,7 +67,7 @@ function reps(exercise){
                 );
             }
 
-        }, 1500))
+        }, 750))
     }
     //var workout_complete = check_if_workout_is_complete();
     //console.log('r : ' + workout_complete);

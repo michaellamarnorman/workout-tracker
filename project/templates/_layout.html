@@ -14,7 +14,7 @@
 <body onload="show()">
      <nav class="teal">
     <div class="nav-wrapper">
-      <a href="{{ url_for('index') }}" class="brand-logo">{% block workout %}Workout App{% endblock %}</a>
+      <a href="{{ url_for('index') }}" class="brand-logo">{% block workout %}Workout{% endblock %}</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       {% if current_user.is_authenticated() %}
       <ul class="right hide-on-med-and-down">

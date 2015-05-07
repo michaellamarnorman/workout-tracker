@@ -1,8 +1,13 @@
 {% extends '_layout.html' %}
 
 {% block content %}
+
 <div class="col s12 m8 l9">
     <div class="container center" style="margin-top: 10%;">
+          <p>Basic user authentication has been setup along with user/workout relationships.
+     As of right now I am not hashing passwords because py-bcrypt is a mf'er to get 
+     working on windows and i dont feel like using a virtual box. Password hashing is 
+     a trivial task anyway, it can wait.</p>
         <div class="row">
             <a href="{{ url_for('login') }}" class="btn-large center">Login</a>
             <a href="{{ url_for('register') }}" class="btn-large">Register</a>
