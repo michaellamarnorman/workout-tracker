@@ -53,6 +53,10 @@ def find_previous_and_current_workout(user_id):
       deadlift_increase = check_if_set_was_failed(pw.deadlift_reps.split(','), 
                     pw.deadlift_weight)
     except AttributeError:
+      # never going to hit this exception since I am creating
+      # an initial record for workout B upon registering.  Need
+      # to redesign so that record is not created and it pulls 
+      # initial weights form a profile/settings table
       press_increase = previous_workout.press_weight
       deadlift_increase = previous_workout.deadlift_weight
     next_workout = {
@@ -213,6 +217,10 @@ def workout(entry_id, workout, username, userid):
   continued = WorkoutA.query.filter_by(entry_id=entry_id, user_id=userid).first()
   if continued:
     return render_template('workout.html', id=entry_id, workout=workout, workout_stats=continued, username=username, userid=userid)
+  
+    # Belowis not used.  need to add try, except to catch
+    # when a user tries to go directly to a url where,
+    # the workout does not exist. 
   workout_stats = WorkoutA.query.filter_by(entry_id=entry_id, user_id=userid).first()
   return render_template('workout.html', id=entry_id, workout=workout, workout_stats=workout_stats, username=username, userid=userid)
 

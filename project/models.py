@@ -34,7 +34,7 @@ class User(db.Model):
         return self.id
 
 
-    def __str__(self):
+    def __repr__(self):
         return 'User: %s'.format(self.name)
 
 
