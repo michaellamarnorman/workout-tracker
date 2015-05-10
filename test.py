@@ -32,7 +32,7 @@ class WorkoutTest(unittest.TestCase):
 
     def login(self, username, password):
         return self.app.post(
-                '/login',
+                '/users/login',
                 data=dict(username=username, password=password),
                 follow_redirects=True
             )
@@ -43,7 +43,7 @@ class WorkoutTest(unittest.TestCase):
 
     def register(self):
         return self.app.post(
-                '/register',
+                '/users/register',
                 data=dict(
                     username='joe',
                     password='bbbbbb',
@@ -54,10 +54,10 @@ class WorkoutTest(unittest.TestCase):
             )
 
     def logout(self):
-        return self.app.get('/logout', follow_redirects=True)
+        return self.app.get('/users/logout', follow_redirects=True)
 
     def start_workout(self):
-        return self.app.post('/joe/1/home', follow_redirects=True)
+        return self.app.post('/profile/joe/1/home', follow_redirects=True)
 
     def create_finished_workout_a(self):
         return self.app.post(
@@ -113,16 +113,16 @@ class WorkoutTest(unittest.TestCase):
 
 
     def test_can_reach_login(self):
-        response = self.app.get("/login", follow_redirects=False)
+        response = self.app.get("/users/login", follow_redirects=False)
         self.assertIn('Username', str(response.data))
 
     def test_can_reach_register(self):
-        response = self.app.get("/register", follow_redirects=False)
+        response = self.app.get("/users/register", follow_redirects=False)
         self.assertIn('Confirm Password', str(response.data))
 
     def test_registration_errors_flash_on_page(self):
         response = self.app.post(
-            '/register',
+            '/users/register',
             data=dict(
                 username='mike',
                 email='m@m.com',
@@ -162,7 +162,7 @@ class WorkoutTest(unittest.TestCase):
     def test_can_reach_workout(self):
         self.register()
         self.login('joe', 'bbbbbb')
-        response = self.app.post("/joe/1/home", follow_redirects=True)
+        response = self.app.post("/profile/joe/1/home", follow_redirects=True)
         #print(response.data)
         self.assertIn('Squat', str(response.data))
         self.assertIn('Bench', str(response.data))
@@ -172,7 +172,7 @@ class WorkoutTest(unittest.TestCase):
     def test_post_workout(self):
         self.register()
         self.login('joe', 'bbbbbb')
-        self.app.post('/joe/1/home', follow_redirects=True)
+        self.app.post('/profile/joe/1/home', follow_redirects=True)
         response =self.app.post(
             '/save_workout/joe/1/2',
             data=dict(
@@ -186,7 +186,7 @@ class WorkoutTest(unittest.TestCase):
     def test_next_workout_is_created(self):
         self.register()
         self.login('joe', 'bbbbbb')
-        self.app.post('/joe/1/home', follow_redirects=True)
+        self.app.post('/profile/joe/1/home', follow_redirects=True)
         response = self.app.post(
             '/save_workout/joe/1/2',
             data=dict(
@@ -211,7 +211,7 @@ class WorkoutTest(unittest.TestCase):
                 follow_redirects=True
                 )
             )
-        response = self.app.get('/joe/1/home')
+        response = self.app.get('/profile/joe/1/home')
         self.assertIn('Continue Workout', str(response.data))
 
     def test_updates_save_from_jquery_update_view(self):
@@ -269,7 +269,7 @@ class WorkoutTest(unittest.TestCase):
         self.login('joe', 'bbbbbb')
         self.start_workout()
         self.create_incomplete_workout_a()
-        response = self.app.get('/joe/1/home', follow_redirects=True)
+        response = self.app.get('/profile/joe/1/home', follow_redirects=True)
         self.assertIn('Continue Workout: A', str(response.data))
 
     def test_update_from_jquery_view_workout_b(self):

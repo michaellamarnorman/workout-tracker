@@ -228,7 +228,7 @@ function workout_completed(){
         var form = document.createElement('form');
 
         form.setAttribute('method', 'POST');
-        form.setAttribute('action', '/save_workout/' + username + '/' + userid + '/' + document.getElementById('workout-type').innerHTML);
+        form.setAttribute('action', '/workout/save_workout/' + username + '/' + userid + '/' + document.getElementById('workout-type').innerHTML);
         form.style.display = 'hidden';
         input1=document.createElement('input'); 
         input2=document.createElement('input'); 
@@ -318,7 +318,7 @@ function write_updates(){
         var userid = document.getElementById('workout-userid').innerHTML;
         $.ajax({
             method: "POST",
-            url: "/write_updates/" + username + '/' + userid + '/' + document.getElementById('workout-type').innerHTML,
+            url: "/workout/write_updates/" + username + '/' + userid + '/' + document.getElementById('workout-type').innerHTML,
             data: workout_data
         })
             .success(function( msg ) {
