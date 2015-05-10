@@ -61,7 +61,7 @@ class WorkoutTest(unittest.TestCase):
 
     def create_finished_workout_a(self):
         return self.app.post(
-            '/save_workout/joe/1/2',
+            '/workout/save_workout/joe/1/2',
             data=dict(
                 squat='5,5,5,5,5',
                 bench='5,5,5,5,5',
@@ -72,7 +72,7 @@ class WorkoutTest(unittest.TestCase):
 
     def create_finished_workout_b(self):
         return self.app.post(
-            '/save_workout/joe/1/3',
+            '/workout/save_workout/joe/1/3',
             data=dict(
                 squat='5,5,5,5,5',
                 press='5,5,5,5,5',
@@ -84,7 +84,7 @@ class WorkoutTest(unittest.TestCase):
 
     def create_incomplete_workout_a(self):
         return self.app.post(
-            '/write_updates/joe/1/2',
+            '/workout/write_updates/joe/1/2',
             data=dict(
                 squat='5,5,5,5,5',
                 bench='5,5,5,5,5',
@@ -95,7 +95,7 @@ class WorkoutTest(unittest.TestCase):
 
     def create_incomplete_workout_b(self):
         return self.app.post(
-            '/write_updates/joe/1/3',
+            '/workout/write_updates/joe/1/3',
             data=dict(
                 squat='5,5,5,5,5',
                 press='5,5,5,',
@@ -141,7 +141,7 @@ class WorkoutTest(unittest.TestCase):
     def test_users_can_get_to_first_workout(self):
         self.register()
         self.login('joe', 'bbbbbb')
-        response = self.app.get('/joe/1/workout/1/A')
+        response = self.app.get('/workout/joe/1/workout/1/A')
         self.assertIn('Squat', str(response.data))
 
     def test_incorrect_login(self):
@@ -174,7 +174,7 @@ class WorkoutTest(unittest.TestCase):
         self.login('joe', 'bbbbbb')
         self.app.post('/profile/joe/1/home', follow_redirects=True)
         response =self.app.post(
-            '/save_workout/joe/1/2',
+            '/workout/save_workout/joe/1/2',
             data=dict(
                 squat='5,5,5,5,5',
                 bench='5,5,5,5,5',
@@ -188,7 +188,7 @@ class WorkoutTest(unittest.TestCase):
         self.login('joe', 'bbbbbb')
         self.app.post('/profile/joe/1/home', follow_redirects=True)
         response = self.app.post(
-            '/save_workout/joe/1/2',
+            '/workout/save_workout/joe/1/2',
             data=dict(
             squat='5,5,5,5,5',
             bench='5,5,5,5,5',
@@ -203,7 +203,7 @@ class WorkoutTest(unittest.TestCase):
         self.login('joe', 'bbbbbb')
         self.start_workout()
         self.app.post(
-            '/write_updates/joe/1/2',
+            '/workout/write_updates/joe/1/2',
             data=dict(
                 squat='5,5,5,5,5',
                 bench='5,5,5,5,5',
@@ -219,7 +219,7 @@ class WorkoutTest(unittest.TestCase):
         self.login('joe', 'bbbbbb')
         self.start_workout()
         response = self.app.post(
-            '/write_updates/joe/1/2',
+            '/workout/write_updates/joe/1/2',
             data=dict(
                 squat='5,5,5,5,5',
                 bench='5,5,5,5,5',
@@ -288,7 +288,7 @@ class WorkoutTest(unittest.TestCase):
         self.create_finished_workout_a()
         self.start_workout()
         response = self.app.post(
-            '/save_workout/joe/1/3',
+            '/workout/save_workout/joe/1/3',
             data=dict(
                 squat="5,5,5,5,5",
                 press="5,5,5,5,5",
@@ -303,7 +303,7 @@ class WorkoutTest(unittest.TestCase):
         self.login('joe', 'bbbbbb')
         self.start_workout()
         self.create_incomplete_workout_a()
-        self.app.get('/joe/1/home')
+        self.app.get('/profile/joe/1/home')
         response = self.start_workout()
         self.assertIn('Squat', str(response.data))
         self.assertIn('Bench', str(response.data))
